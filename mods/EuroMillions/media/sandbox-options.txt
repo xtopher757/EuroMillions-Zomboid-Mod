@@ -1,0 +1,19 @@
+VERSION = 1,
+
+option EuroMillions.EnableWinnerHorde
+{
+    type = boolean,
+    default = true,
+    page = EuroMillions,
+    translation = EM_EnableWinnerHorde,
+}
+
+option EuroMillions.WinnerHordeMultiplier
+{
+    type = double,
+    min = 0.0,
+    max = 4.0,
+    default = 1.0,
+    page = EuroMillions,
+    translation = EM_WinnerHordeMultiplier,
+}

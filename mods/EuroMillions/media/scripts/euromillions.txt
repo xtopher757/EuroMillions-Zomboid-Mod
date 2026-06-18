@@ -1,0 +1,107 @@
+module EuroMillions
+{
+    /***** Play slips *****/
+
+    item TicketBlank
+    {
+        DisplayCategory = Lottery,
+        Type           = Normal,
+        DisplayName    = EuroMillions Play Slip,
+        Icon           = EM_TicketBlank,
+        Weight         = 0.01,
+        Tooltip        = Tooltip_EM_TicketBlank,
+        WorldStaticModel = SheetPaper,
+    }
+
+    item Ticket
+    {
+        DisplayCategory = Lottery,
+        Type           = Normal,
+        DisplayName    = EuroMillions Ticket,
+        Icon           = EM_TicketFilled,
+        Weight         = 0.01,
+        Tooltip        = Tooltip_EM_Ticket,
+        WorldStaticModel = SheetPaper,
+    }
+
+    /***** Scratchcards *****/
+
+    item ScratchMillionaire
+    {
+        DisplayCategory = Lottery,
+        Type           = Normal,
+        DisplayName    = Millionaire Maker Scratchcard,
+        Icon           = EM_ScratchMillionaire,
+        Weight         = 0.01,
+        Tooltip        = Tooltip_EM_Scratchcard,
+        WorldStaticModel = SheetPaper,
+    }
+
+    item ScratchLuckyStars
+    {
+        DisplayCategory = Lottery,
+        Type           = Normal,
+        DisplayName    = Lucky Stars Scratchcard,
+        Icon           = EM_ScratchLuckyStars,
+        Weight         = 0.01,
+        Tooltip        = Tooltip_EM_Scratchcard,
+        WorldStaticModel = SheetPaper,
+    }
+
+    item ScratchGoldRush
+    {
+        DisplayCategory = Lottery,
+        Type           = Normal,
+        DisplayName    = Gold Rush Scratchcard,
+        Icon           = EM_ScratchGoldRush,
+        Weight         = 0.01,
+        Tooltip        = Tooltip_EM_Scratchcard,
+        WorldStaticModel = SheetPaper,
+    }
+
+    item Scratch777
+    {
+        DisplayCategory = Lottery,
+        Type           = Normal,
+        DisplayName    = Triple 7 Scratchcard,
+        Icon           = EM_Scratch777,
+        Weight         = 0.01,
+        Tooltip        = Tooltip_EM_Scratchcard,
+        WorldStaticModel = SheetPaper,
+    }
+
+    item ScratchUsed
+    {
+        DisplayCategory = Lottery,
+        Type           = Normal,
+        DisplayName    = Used Scratchcard,
+        Icon           = EM_ScratchUsed,
+        Weight         = 0.01,
+        Tooltip        = Tooltip_EM_ScratchUsed,
+        WorldStaticModel = SheetPaper,
+    }
+
+    /***** Trophies & advertising *****/
+
+    item Voucher
+    {
+        DisplayCategory = Lottery,
+        Type           = Normal,
+        DisplayName    = EuroMillions Prize Voucher,
+        Icon           = EM_Voucher,
+        Weight         = 0.01,
+        Tooltip        = Tooltip_EM_Voucher,
+        WorldStaticModel = SheetPaper,
+    }
+
+    item Flyer
+    {
+        DisplayCategory = Lottery,
+        Type           = Literature,
+        DisplayName    = EuroMillions Flyer,
+        Icon           = EM_Flyer,
+        Weight         = 0.01,
+        Tooltip        = Tooltip_EM_Flyer,
+        WorldStaticModel = SheetPaper,
+    }
+}

@@ -1,0 +1,8 @@
+Tooltip_EN = {
+    Tooltip_EM_TicketBlank = "A blank EuroMillions play slip. <LINE> Fill it out (you'll need a pen or pencil) to pick 5 numbers and 2 Lucky Stars.",
+    Tooltip_EM_Ticket = "A filled-out EuroMillions ticket entered into an upcoming draw. <LINE> Right-click to check it on or after draw night.",
+    Tooltip_EM_Scratchcard = "A EuroMillions scratchcard. <LINE> Right-click to scratch it for an instant result. Could it be you?",
+    Tooltip_EM_ScratchUsed = "A scratched, worthless lottery card. Litter of a dead world.",
+    Tooltip_EM_Voucher = "A EuroMillions prize voucher. Worth a fortune that no longer exists - but a fine trophy for a winner.",
+    Tooltip_EM_Flyer = "A EuroMillions advertising flyer. <LINE> Right-click to read it.",
+}

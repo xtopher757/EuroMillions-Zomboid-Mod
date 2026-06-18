@@ -1,0 +1,15 @@
+version=1
+id=
+title=EuroMillions - Apocalypse Lottery
+description=The world has ended, but the dream lives on.
+description=
+description=Find EuroMillions play slips and scratchcards across Knox County, pick your
+description=5 numbers and 2 Lucky Stars, and survive long enough for the Tuesday & Friday
+description=draws. Win survival loot... but claim the jackpot and every zombie for blocks
+description=around will shuffle in to congratulate you. Could it be you?
+description=
+description=Features authentic 5/50 + 2 Lucky Stars play, 13 prize tiers, instant-win
+description=scratchcards, automated draw broadcasts, branded advertising, and the
+description=Winner's Celebration horde mechanic (fully configurable in sandbox options).
+tags=Build 41;Items;Misc
+visibility=public

@@ -1,0 +1,9 @@
+Sandbox_EN = {
+    Sandbox_EuroMillions = "EuroMillions Lottery",
+
+    Sandbox_EM_EnableWinnerHorde = "Winner's Celebration horde",
+    Sandbox_EM_EnableWinnerHorde_tooltip = "When ON, claiming a Match-5 (or better) prize sets off fanfare that draws a horde of zombies to the winner. Turn OFF for prizes without the crowd.",
+
+    Sandbox_EM_WinnerHordeMultiplier = "Celebration horde size",
+    Sandbox_EM_WinnerHordeMultiplier_tooltip = "Scales how many zombies turn up to a jackpot celebration. 0 disables the crowd, 1.0 is default, 4.0 is a very enthusiastic turnout.",
+}
