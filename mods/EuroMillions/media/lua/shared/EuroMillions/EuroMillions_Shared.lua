@@ -11,6 +11,9 @@
 EuroMillions = EuroMillions or {}
 local EM = EuroMillions
 
+-- Network module name shared by client/server commands.
+EM.MODULE = "EuroMillions"
+
 ----------------------------------------------------------------------------
 -- Game rules (mirrors the real EuroMillions matrix)
 ----------------------------------------------------------------------------
@@ -288,5 +291,38 @@ EM.PRIZE = {
     -- Match 2: the classic "free Lucky Dip" - win another go.
     [13] = { freePlay = true, loot = { {item="EuroMillions.TicketBlank",min=1,max=1} } },
 }
+
+----------------------------------------------------------------------------
+-- Scratchcard odds. Each row is { tier, weight }; tier 0 = no win. Tiers
+-- reuse the prize table above (1..3 = instant jackpot-style wins). Kept in
+-- shared so the SERVER can roll outcomes authoritatively in multiplayer.
+----------------------------------------------------------------------------
+EM.SCRATCH_ODDS = {
+    ["EuroMillions.ScratchMillionaire"] = {
+        {0, 620}, {13, 150}, {10, 90}, {6, 60}, {4, 40}, {2, 28}, {1, 12},
+    },
+    ["EuroMillions.ScratchLuckyStars"] = {
+        {0, 600}, {13, 180}, {10, 110}, {7, 60}, {5, 35}, {3, 15},
+    },
+    ["EuroMillions.ScratchGoldRush"] = {
+        {0, 480}, {13, 260}, {10, 150}, {6, 70}, {4, 30}, {3, 10},
+    },
+    ["EuroMillions.Scratch777"] = {
+        {0, 700}, {13, 90}, {9, 90}, {5, 60}, {3, 40}, {2, 12}, {1, 8},
+    },
+}
+
+function EM.rollScratch(cardType)
+    local odds = EM.SCRATCH_ODDS[cardType] or EM.SCRATCH_ODDS["EuroMillions.ScratchGoldRush"]
+    local total = 0
+    for _, row in ipairs(odds) do total = total + row[2] end
+    local roll = ZombRand(total)
+    local acc = 0
+    for _, row in ipairs(odds) do
+        acc = acc + row[2]
+        if roll < acc then return row[1] end
+    end
+    return 0
+end
 
 return EM

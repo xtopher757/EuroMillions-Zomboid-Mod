@@ -112,13 +112,38 @@ Found under **EuroMillions Lottery** in the sandbox settings:
 
 ---
 
+## Multiplayer
+
+The mod is **multiplayer-first**. In Project Zomboid MP the server owns world
+state, so all payouts run server-side:
+
+- Checking a ticket or scratching a card sends a command to the server
+  (`sendClientCommand`). The **server** rolls scratch outcomes, re-derives ticket
+  results authoritatively from the stored numbers + draw date, drops the prize
+  loot, and spawns the Winner's Celebration horde — so every player sees them and
+  they persist.
+- The server replies to the winner with their result and **broadcasts a jackpot
+  alert to everyone** on the server.
+- The twice-weekly **draw broadcast is driven by the server clock** and sent to
+  all connected players at once, so the whole server shares one set of winning
+  numbers per draw.
+- In **single-player**, the integrated server runs in the same Lua state, so the
+  command round-trip is skipped and payouts happen locally — same behaviour, no
+  networking overhead.
+
+Client-owned actions (consuming a scratchcard, marking a ticket checked) stay on
+the client where they sync naturally.
+
 ## Compatibility & notes
 
-- Built for Project Zomboid Build 41 (`versionMin=41.65`).
-- Single-player focused. The prize drop and celebration horde run client-side;
-  in multiplayer the spawn/drop may not fully replicate to other clients.
+- Built for Project Zomboid Build 41 (`versionMin=41.65`); works on dedicated
+  servers, co-op hosts and single-player.
 - Draw results are seeded from the in-game calendar date, so they're consistent
-  and reproducible. PZ's lore start (Friday 9 July 1993) is a draw day.
+  and reproducible across every client. PZ's lore start (Friday 9 July 1993) is
+  a draw day.
+- Prize payouts trust the requesting client's filled-in numbers but the **server
+  re-derives the winning balls and prize tier**, so ticket results can't be
+  forged by editing numbers. (Scratch outcomes are rolled entirely server-side.)
 
 ---
 
@@ -134,21 +159,24 @@ mods/EuroMillions/
     lua/
       shared/EuroMillions/EuroMillions_Shared.lua   -- rules, draws, tiers, prizes
       shared/Translate/EN/                -- tooltips + sandbox text
-      client/EuroMillions_Prizes.lua      -- payout + Winner's Celebration
+      client/EuroMillions_Prizes.lua      -- client messaging + command dispatch
       client/EuroMillions_Context.lua     -- right-click menu
       client/EuroMillions_TicketUI.lua    -- number-picker UI
-      client/EuroMillions_Draw.lua        -- advertising + draw broadcasts
+      client/EuroMillions_Draw.lua        -- advertising + welcome
       client/timedactions/                -- scratch + fill-out actions
+      server/EuroMillions_Server.lua      -- authoritative payout, horde, draws
       server/EuroMillions_Distribution.lua-- loot placement
 tools/
   gen_textures.py                         -- regenerates the icons + poster
   test_logic.lua                          -- unit tests for the core logic
+  test_mp.lua                             -- client/server round-trip tests
 ```
 
 ### Development
 
 Regenerate art: `python3 tools/gen_textures.py` (needs Pillow).
-Run logic tests: `luajit tools/test_logic.lua`.
+Run tests: `luajit tools/test_logic.lua` and `luajit tools/test_mp.lua`
+(the latter simulates the multiplayer client/server command round-trip).
 
 ---
 

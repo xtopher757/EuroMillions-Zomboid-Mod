@@ -78,20 +78,14 @@ local function doCheckTicket(player, ticket)
         return
     end
 
+    -- Record the result locally for the tooltip, then let the server pay out
+    -- authoritatively (it re-derives the tier so the prize/horde are server-spawned).
     local draw = EM.drawNumbersForSerial(md.drawSerial)
-    local m, s, tier = EM.score(md.mains, md.stars, draw.mains, draw.stars)
+    local _, _, tier = EM.score(md.mains, md.stars, draw.mains, draw.stars)
     md.checked = true
     md.resultTier = tier
 
-    EM.halo(player, "Winning balls: " .. table.concat(draw.mains, " ")
-        .. "  Stars: " .. table.concat(draw.stars, " "), 0.7, 0.85, 1.0)
-
-    if tier == 0 then
-        EM.halo(player, "Matched " .. m .. " + " .. s .. " stars. No prize this time.", 0.8, 0.8, 0.8)
-        player:Say("No luck on this one.")
-    else
-        EM.awardPrize(player, tier, "ticket")
-    end
+    EM.requestCheck(player, md)
 end
 
 local function doReadFlyer(player)
